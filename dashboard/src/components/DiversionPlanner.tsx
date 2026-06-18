@@ -59,7 +59,7 @@ export function DiversionPlanner() {
     let avgScore = 48
     let level: 'Low' | 'Medium' | 'High' = 'Medium'
     let numHotspots = 10
-    let mapPins: { pos: [number, number]; label: string; congestion: 'Low' | 'Medium' | 'High'; score: number }[] = []
+    let mapPins: { id: string; pos: [number, number]; label: string; congestion: 'Low' | 'Medium' | 'High'; score: number }[] = []
     let numZones = 3
 
     let mainRouteWp = mainRouteCoords;
@@ -227,11 +227,11 @@ export function DiversionPlanner() {
   }, [plannerData]);
 
   useEffect(() => {
-    if (plannerData.isBulk) return;
+    if (plannerData.isBulk || !plannerData.mainRouteWp || !plannerData.computedAltRoutes) return;
     let mounted = true;
 
     const loadRoutes = async () => {
-      const mainPath = await fetchRoutePath(plannerData.mainRouteWp);
+      const mainPath = await fetchRoutePath(plannerData.mainRouteWp!);
       if (mounted) setMainRoutePath(mainPath);
 
       const altPaths: Record<string, [number, number][]> = {};
@@ -541,7 +541,7 @@ export function DiversionPlanner() {
                   <div className="min-w-0">
                     <div className="text-xs text-gray-400 font-medium truncate">{plannerData.mainRouteLabel}</div>
                     <div className="text-sm font-bold text-gray-200 mt-0.5">
-                      {plannerData.level} Traffic • {plannerData.mainEta + plannerData.mainDelay} min ETA
+                      {plannerData.level} Traffic • {(plannerData.mainEta ?? 0) + (plannerData.mainDelay ?? 0)} min ETA
                     </div>
                   </div>
                 </div>
