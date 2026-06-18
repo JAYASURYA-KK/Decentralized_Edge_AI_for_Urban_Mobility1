@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(222.2 84% 4.9%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-card: hsl(222.2 84% 4.9%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(222.2 84% 4.9%);
+  --color-popover-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(210 40% 98%);
+  --color-primary-foreground: hsl(222.2 47.4% 11.2%);
+  --color-secondary: hsl(217.2 32.6% 17.5%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-muted: hsl(217.2 32.6% 17.5%);
+  --color-muted-foreground: hsl(215 20.2% 65.1%);
+  --color-accent: hsl(217.2 32.6% 17.5%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(217.2 32.6% 17.5%);
+  --color-input: hsl(217.2 32.6% 17.5%);
+  --color-ring: hsl(212.7 26.8% 83.9%);
+  --color-chart-1: hsl(220 70% 50%);
+  --color-chart-2: hsl(160 60% 45%);
+  --color-chart-3: hsl(30 80% 55%);
+  --color-chart-4: hsl(280 65% 60%);
+  --color-chart-5: hsl(340 75% 55%);
+  --radius-sm: calc(0.5rem - 4px);
+  --radius-md: calc(0.5rem - 2px);
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0.042 265.755);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.965 0.001 286.375);
+  --secondary-foreground: oklch(0.205 0.042 265.755);
+  --muted: oklch(0.965 0.001 286.375);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.965 0.001 286.375);
+  --accent-foreground: oklch(0.205 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0.004 286.375);
+  --input: oklch(0.922 0.004 286.375);
+  --ring: oklch(0.708 0.015 286.375);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0.042 265.755);
+  --secondary: oklch(0.269 0.015 286.375);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0.015 286.375);
+  --muted-foreground: oklch(0.708 0.015 286.375);
+  --accent: oklch(0.269 0.015 286.375);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.269 0.015 286.375);
+  --input: oklch(0.269 0.015 286.375);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+   ══════════════════════════════════════════════════════════════════ */
+.light {
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --border: oklch(0.922 0.004 286.375);
+}
+
+.light body,
+.light .bg-\[\#020617\],
+.light .bg-gray-950,
+.light .bg-\[\#0a0f29\],
+.light .bg-\[\#0f172a\],
+.light .bg-\[\#080e24\]\/90,
+.light .bg-\[\#0a0f27\]\/80,
+.light .bg-gray-950\/45,
+.light .bg-gray-950\/40,
+.light .bg-gray-950\/50,
+.light .bg-gray-950\/60,
+.light .bg-\[\#020617\]\/70,
+.light .bg-\[\#020617\]\/80,
+.light .bg-\[\#020617\]\/70,
+.light .bg-\[\#020617\]\/80,
+.light main {
+  background-color: #f8fafc !important;
+}
+
+.light .bg-gray-900,
+.light .bg-gray-900\/95,
+.light .bg-gray-900\/50,
+.light .bg-gray-900\/40,
+.light .bg-gray-900\/30,
+.light .bg-\[\#0d1527\],
+.light .bg-\[\#131e36\],
+.light .bg-\[\#0a0f27\]\/90,
+.light header,
+.light aside,
+.light .bg-card,
+.light .bg-\[\#080e24\]\/90,
+.light .bg-\[\#0a0f27\]\/80,
+.light .bg-\[\#0a0f27\]\/90,
+.light .bg-white\/\[\.03\],
+.light .bg-white\/\[\.02\],
+.light .bg-white\/5,
+.light .bg-white\/10 {
+  background-color: #ffffff !important;
+}
+
+/* Specific background styles for light buttons and panels */
+.light .bg-gray-800,
+.light .bg-gray-800\/50,
+.light select,
+.light input,
+.light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light .bg-blue-600\/20 {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #2563eb !important;
+}
+
+/* Hover adjustments */
+.light .hover\:bg-gray-850\/50:hover,
+.light .hover\:bg-gray-800\/50:hover,
+.light .hover\:bg-gray-800\/20:hover,
+.light .hover\:bg-gray-800:hover,
+.light .hover\:bg-\[\#131e36\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Text overrides */
+.light .text-white,
+.light .text-gray-150,
+.light .text-gray-100,
+.light .text-gray-200,
+.light .text-gray-300,
+.light .text-\[\#F8FAFC\],
+.light .text-card-foreground,
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light th {
+  color: #0f172a !important;
+}
+
+.light .text-gray-400,
+.light .text-gray-500,
+.light .text-gray-600,
+.light .text-gray-700,
+.light .text-muted-foreground {
+  color: #475569 !important;
+}
+
+/* Border overrides */
+.light .border,
+.light .border-gray-800,
+.light .border-gray-700,
+.light .border-white\/5,
+.light .border-white\/10,
+.light .border-white\/\[\.05\],
+.light .border-white\/\[\.06\],
+.light .border-white\/\[\.08\] {
+  border-color: #cbd5e1 !important;
+}
+
+/* Badges and tags */
+.light .bg-blue-500\/10 {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #1d4ed8 !important;
+}
+.light .bg-cyan-500\/10 {
+  background-color: rgba(6, 182, 212, 0.12) !important;
+  color: #0891b2 !important;
+}
+.light .bg-green-500\/10 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #047857 !important;
+}
+.light .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: #b91c1c !important;
+}
+
+/* Recharts styling in light mode */
+.light .recharts-text,
+.light .recharts-label {
+  fill: #475569 !important;
+}
+.light .recharts-cartesian-grid-horizontal line,
+.light .recharts-cartesian-grid-vertical line {
+  stroke: #e2e8f0 !important;
+}
+.light .recharts-legend-item-text {
+  color: #475569 !important;
+}
+.light .recharts-tooltip-cursor {
+  stroke: #cbd5e1 !important;
+}
+.light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light .recharts-tooltip-label {
+  color: #0f172a !important;
+}
+

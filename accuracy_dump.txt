@@ -1,0 +1,307 @@
+﻿=== CELL 15 SOURCE ===
+# ΓöÇΓöÇ Install necessary libraries ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+!pip install catboost --quiet
+
+from sklearn.ensemble import (RandomForestRegressor, RandomForestClassifier,
+                             ExtraTreesRegressor, ExtraTreesClassifier,
+                             HistGradientBoostingRegressor, HistGradientBoostingClassifier)
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import (accuracy_score, f1_score, precision_score, recall_score,
+                             roc_auc_score, confusion_matrix, classification_report,
+                             mean_absolute_error, mean_squared_error, r2_score,
+                             mean_absolute_percentage_error)
+from xgboost  import XGBRegressor,  XGBClassifier
+from lightgbm import LGBMRegressor, LGBMClassifier
+from catboost
+--- OUTPUT ---
+[2K   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m97.1/97.1 MB[0m [31m8.4 MB/s[0m eta [36m0:00:00[0m
+[?25h[REG] RandomForest              R┬▓=0.7153  RMSE=6.4335
+[REG] XGBoost                   R┬▓=0.7259  RMSE=6.3127
+[LightGBM] [Warning] Found whitespace in feature_names, replace with underlines
+[REG] LightGBM                  R┬▓=0.7437  RMSE=6.1043
+[REG] CatBoost                  R┬▓=0.7406  RMSE=6.1409
+[REG] ExtraTrees                R┬▓=0.7295  RMSE=6.2712
+[REG] HistGradientBoosting      R┬▓=0.7460  RMSE=6.0765
+
+[CLS] RandomForest              Acc=0.9363  F1=0.9295
+[CLS] XGBoost                   Acc=0.9363  F1=0.9327
+[LightGBM] [Warning] Found whitespace in feature_names, replace with underlines
+[CLS] LightGBM                  Acc=0.9357  F1=0.9321
+[CLS] CatBoost                  Acc=0.9363  F1=0.9307
+[CLS] ExtraTrees                Acc=0.9383  F1=0.9320
+[CLS] HistGradientBoosting      Acc=0.9357  F1=0.9327
+
+
+=== CELL 17 SOURCE ===
+# ΓöÇΓöÇ Install necessary libraries ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+!pip install optuna --quiet
+
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
+import optuna
+optuna.logging.set_verbosity(optuna.logging.WARNING)
+
+# ΓöÇΓöÇ 4.1 RandomizedSearchCV ΓÇö XGBoost Regressor ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+xgb_param_dist = {
+    'n_estimators':    [100,200,300],
+    'max_depth':       [3,5,7,9],
+    'learning_rate':   [0.01,0.05,0.1,0.2],
+    'subsample':       [0.6,0.8,1.0],
+    'colsample_bytree':[0.6,0.8,1.0],
+    'reg_alpha':       [0,0.1,0.5],
+    'reg_lambda':      [1,1.5,2],
+}
+rs_xgb = RandomizedSearchCV(
+    XGBRegressor(random_state=42, verbosity=0),
+    xgb_param_dist, n_iter=20, cv=3, scoring='r2',
+    n_jobs=-1, random_state=42
+)
+rs_xgb.fit(X_tr, yr_tr)
+best_x
+--- OUTPUT ---
+[?25l   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m0.0/425.6 kB[0m [31m?[0m eta [36m-:--:--[0m
+[2K   [91mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m[91mΓò╕[0m[90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m286.7/425.6 kB[0m [31m8.5 MB/s[0m eta [36m0:00:01[0m
+[2K   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m425.6/425.6 kB[0m [31m8.3 MB/s[0m eta [36m0:00:00[0m
+[?25hXGB RandomizedCV best params: {'subsample': 0.6, 'reg_lambda': 1.5, 'reg_alpha': 0, 'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.05, 'colsample_bytree': 1.0}
+XGB CV R┬▓: 0.7606
+
+RF GridSearchCV best params: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 100}
+RF CV F1: 0.9424
+
+Optuna best params: {'iterations': 203, 'depth': 7, 'learning_rate': 0.18138822546975292, 'l2_leaf_reg': 2.1232378784654475}
+Optuna best F1: 0.9385
+CatBoostClassifier(depth=7, iterations=203, l2_leaf_reg=2.1232378784654475, learning_rate=0.18138822546975292, random_state=42, verbose=0)
+
+=== CELL 19 SOURCE ===
+# ΓöÇΓöÇ 5.1 Regression Metrics Table ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+reg_df = pd.DataFrame(reg_results).T
+print("=== Regression Metrics ===")
+print(reg_df.to_string())
+
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+for ax, metric in zip(axes, ['R2','RMSE','MAE']):
+    vals = reg_df[metric].sort_values(ascending=(metric != 'R2'))
+    colors = ['#2ecc71' if v == vals.max() else '#3498db' for v in vals]
+    ax.bar(vals.index, vals.values, color=colors)
+    ax.set_title(f'{metric} by Model'); ax.set_xticklabels(vals.index, rotation=30, ha='right')
+plt.suptitle('Regression Model Comparison', fontsize=14, fontweight='bold')
+plt.tight_layout(); plt.savefig('outputs/reg_comparison.png', dpi=150, bbox_inches='tight'); plt.show()
+
+# ΓöÇΓöÇ 5.2 Classification Metrics Table ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+--- OUTPUT ---
+=== Regression Metrics ===
+                         MAE    RMSE      R2  MAPE
+RandomForest          3.1683  6.4335  0.7153  9.07
+XGBoost               3.3021  6.3127  0.7259  9.28
+LightGBM              3.0092  6.1043  0.7437  8.57
+CatBoost              3.1142  6.1409  0.7406  8.84
+ExtraTrees            3.1674  6.2712  0.7295  8.76
+HistGradientBoosting  2.9966  6.0765  0.7460  8.47
+<Figure size 1800x500 with 3 Axes>
+=== Classification Metrics ===
+                      Accuracy      F1  Precision  Recall
+RandomForest            0.9363  0.9295     0.9336  0.9363
+XGBoost                 0.9363  0.9327     0.9338  0.9363
+LightGBM                0.9357  0.9321     0.9334  0.9357
+CatBoost                0.9363  0.9307     0.9335  0.9363
+ExtraTrees              0.9383  0.9320     0.9361  0.9383
+HistGradientBoosting    0.9357  0.9327     0.9331  0.9357
+<Figure size 1400x500 with 2 Axes>
+
+=== CELL 20 SOURCE ===
+# ΓöÇΓöÇ 5.3 Confusion Matrix for Best Classifier ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+best_cls_name = cls_df['F1'].idxmax()
+best_cls_model = trained_cls[best_cls_name]
+y_pred_best = best_cls_model.predict(X_te)
+
+cm = confusion_matrix(yc_te, y_pred_best)
+fig, ax = plt.subplots(figsize=(7, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=le_cls.classes_, yticklabels=le_cls.classes_, ax=ax)
+ax.set_title(f'Confusion Matrix ΓÇö {best_cls_name}', fontsize=13, fontweight='bold')
+ax.set_ylabel('True Label'); ax.set_xlabel('Predicted Label')
+plt.tight_layout(); plt.savefig('outputs/confusion_matrix.png', dpi=150, bbox_inches='tight'); plt.show()
+print(classification_report(yc_te, y_pred_best, target_names=le_cls.classes_))
+--- OUTPUT ---
+<Figure size 700x500 with 2 Axes>              precision    recall  f1-score   support
+
+        High       0.72      0.32      0.44        41
+         Low       0.89      0.94      0.91       359
+      Medium       0.96      0.96      0.96      1108
+
+    accuracy                           0.94      1508
+   macro avg       0.86      0.74      0.77      1508
+weighted avg       0.93      0.94      0.93      1508
+
+
+
+=== CELL 22 SOURCE ===
+from sklearn.model_selection import StratifiedKFold, KFold, cross_val_score
+
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+kf  = KFold(n_splits=5, shuffle=True, random_state=42)
+
+cv_results = {}
+for name, m in trained_cls.items():
+    scores = cross_val_score(m, X, y_cls, cv=skf, scoring='f1_weighted', n_jobs=-1)
+    cv_results[name] = {'mean_F1': scores.mean().round(4), 'std_F1': scores.std().round(4)}
+    print(f"[CLS CV] {name:25s} F1={scores.mean():.4f} ┬▒{scores.std():.4f}")
+
+print()
+for name, m in trained_reg.items():
+    scores = cross_val_score(m, X, y_index, cv=kf, scoring='r2', n_jobs=-1)
+    print(f"[REG CV] {name:25s} R┬▓={scores.mean():.4f} ┬▒{scores.std():.4f}")
+
+# Plot CV F1
+cv_df = pd.DataFrame(cv_results).T
+fig, ax = plt.subplots(figsize=(10, 5))
+bars = ax.
+--- OUTPUT ---
+[CLS CV] RandomForest              F1=0.9385 ┬▒0.0038
+[CLS CV] XGBoost                   F1=0.9385 ┬▒0.0034
+[CLS CV] LightGBM                  F1=0.9386 ┬▒0.0060
+[CLS CV] CatBoost                  F1=0.9409 ┬▒0.0053
+[CLS CV] ExtraTrees                F1=0.9379 ┬▒0.0044
+[CLS CV] HistGradientBoosting      F1=0.9383 ┬▒0.0042
+
+[REG CV] RandomForest              R┬▓=0.7347 ┬▒0.0190
+[REG CV] XGBoost                   R┬▓=0.7235 ┬▒0.0219
+[REG CV] LightGBM                  R┬▓=0.7514 ┬▒0.0205
+[REG CV] CatBoost                  R┬▓=0.7505 ┬▒0.0156
+[REG CV] ExtraTrees                R┬▓=0.7318 ┬▒0.0151
+[REG CV] HistGradientBoosting      R┬▓=0.7525 ┬▒0.0202
+<Figure size 1000x500 with 1 Axes>
+
+=== CELL 24 SOURCE ===
+import shap
+
+# ΓöÇΓöÇ 7.1 Built-in Feature Importance ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+best_reg_name = reg_df['R2'].idxmax()
+best_reg_model = trained_reg[best_reg_name]
+
+if hasattr(best_reg_model, 'feature_importances_'):
+    fi = pd.Series(best_reg_model.feature_importances_, index=base_feats).sort_values(ascending=False).head(20)
+    fig, ax = plt.subplots(figsize=(10, 7))
+    fi.sort_values().plot(kind='barh', color='#2ecc71', ax=ax)
+    ax.set_title(f'Top 20 Feature Importance ΓÇö {best_reg_name}', fontsize=13, fontweight='bold')
+    plt.tight_layout(); plt.savefig('outputs/feature_importance.png', dpi=150, bbox_inches='tight'); plt.show()
+
+# ΓöÇΓöÇ 7.2 SHAP Values ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+X_shap = X_te.iloc[:200]  # Sample for speed
+try:
+    explainer 
+--- OUTPUT ---
+<Figure size 800x950 with 2 Axes>Γ£à SHAP summary plot saved
+<Figure size 1000x700 with 1 Axes>
+
+=== CELL 34 SOURCE ===
+import sqlite3, datetime
+
+# ΓöÇΓöÇ Setup SQLite store ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+conn = sqlite3.connect('outputs/post_event_learning.db')
+cursor = conn.cursor()
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS predictions (
+        id TEXT, event_cause TEXT,
+        predicted_duration REAL, actual_duration REAL,
+        error REAL, abs_error REAL,
+        congestion_level TEXT, timestamp TEXT
+    )
+""")
+conn.commit()
+
+# ΓöÇΓöÇ Populate with dataset predictions ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+X_all_scaled = X.values
+preds_all = best_reg_model.predict(X_all_scaled)
+
+records = []
+for i, (idx, row) in enumerate(df_clean.iterrows()):
+    pred_dur = float(preds_all[i])
+    act_dur  = float(row['duration_minutes'])
+    err      = pred_dur - act_dur
+    records.appen
+--- OUTPUT ---
+<Figure size 1400x500 with 2 Axes>MAE: 299.11 min | Records stored: 500
+
+ΓÜÖ∩╕Å  Model retraining trigger: periodically call fit() on accumulated records.
+
+
+=== CELL 36 SOURCE ===
+# ΓöÇΓöÇ Select best models by metric ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+reg_df  = pd.DataFrame(reg_results).T
+cls_df  = pd.DataFrame(cls_results).T
+
+best_reg_name  = reg_df['R2'].idxmax()
+best_cls_name  = cls_df['F1'].idxmax()
+best_reg_model = trained_reg[best_reg_name]
+best_cls_model = trained_cls[best_cls_name]
+
+print("=" * 55)
+print("     MODEL SELECTION RESULTS")
+print("=" * 55)
+print("\n≡ƒôè Regression Model Comparison:")
+print(reg_df[['R2','RMSE','MAE','MAPE']].to_string())
+print(f"\n≡ƒÅå Best Regression Model: {best_reg_name}  (R┬▓={reg_df.loc[best_reg_name,'R2']:.4f})")
+
+print("\n≡ƒôè Classification Model Comparison:")
+print(cls_df.to_string())
+print(f"\n≡ƒÅå Best Classification Model: {best_cls_name}  (F1={cls_df.loc[best_cls_name,'F1']:.4f})")
+
+# Visual leaderboard
+fig, axes = plt.subp
+--- OUTPUT ---
+=======================================================
+     MODEL SELECTION RESULTS
+=======================================================
+
+≡ƒôè Regression Model Comparison:
+                          R2    RMSE     MAE  MAPE
+RandomForest          0.7153  6.4335  3.1683  9.07
+XGBoost               0.7259  6.3127  3.3021  9.28
+LightGBM              0.7437  6.1043  3.0092  8.57
+CatBoost              0.7406  6.1409  3.1142  8.84
+ExtraTrees            0.7295  6.2712  3.1674  8.76
+HistGradientBoosting  0.7460  6.0765  2.9966  8.47
+
+≡ƒÅå Best Regression Model: HistGradientBoosting  (R┬▓=0.7460)
+
+≡ƒôè Classification Model Comparison:
+                      Accuracy      F1  Precision  Recall
+RandomForest            0.9363  0.9295     0.9336  0.9363
+XGBoost                 0.9363  0.9327     0.9338  0.9363
+LightGBM                0.9357  0.9321     0.9334  0.9357
+CatBoost                0.9363  0.9307     0.9335  0.9363
+ExtraTrees              0.9383  0.9320     0.9361  0.9383
+HistGradientBoosting    0.
+
+=== CELL 43 SOURCE ===
+print("""
+ΓòöΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòù
+Γòæ         GRIDLOCK HACKATHON 2.0 ΓÇö COMPLETE PIPELINE SUMMARY      Γòæ
+ΓòáΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòú
+Γòæ  Phase 1  Γöé Data Analysis (Missing, Outliers, EDA, Geo)         Γòæ
+Γòæ  Phase 2  Γöé Feature Engineering (15+ features, OHE, Scale)      Γòæ
+Γòæ  Phase 3  Γöé 6 Regression + 6 Classification Models Trained      Γòæ
+Γòæ  Phase 4  Γöé RandomizedSearchCV + GridSearchCV + Optuna Tuning   Γòæ
+Γòæ  Phase 5  Γöé Full Metrics: MAE, RMSE, R┬▓, MAPE, F1, ROC-AUC     Γòæ
+Γòæ  Phase 6  Γöé 5-Fold StratifiedKFold + KFold Cross Validation     Γòæ
+Γòæ  Phase 7  Γöé SHAP + Permutation Importance (Top 20 features)     Γòæ
+Γòæ  Phase 8  Γöé Resource Optimization Engine (Police/Barricades)    Γòæ
+Γòæ  Phase 9  Γöé Multi-Factor Risk Score (0-
+--- OUTPUT ---
+
+ΓòöΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòù
+Γòæ         GRIDLOCK HACKATHON 2.0 ΓÇö COMPLETE PIPELINE SUMMARY      Γòæ
+ΓòáΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòú
+Γòæ  Phase 1  Γöé Data Analysis (Missing, Outliers, EDA, Geo)         Γòæ
+Γòæ  Phase 2  Γöé Feature Engineering (15+ features, OHE, Scale)      Γòæ
+Γòæ  Phase 3  Γöé 6 Regression + 6 Classification Models Trained      Γòæ
+Γòæ  Phase 4  Γöé RandomizedSearchCV + GridSearchCV + Optuna Tuning   Γòæ
+Γòæ  Phase 5  Γöé Full Metrics: MAE, RMSE, R┬▓, MAPE, F1, ROC-AUC     Γòæ
+Γòæ  Phase 6  Γöé 5-Fold StratifiedKFold + KFold Cross Validation     Γòæ
+Γòæ  Phase 7  Γöé SHAP + Permutation Importance (Top 20 features)     Γòæ
+Γòæ  Phase 8  Γöé Resource Optimization Engine (Police/Barricades)    Γòæ
+Γòæ  Phase 9  Γöé Multi-Factor Risk Score (0-100)                     Γòæ
+Γòæ  Phase 10 Γöé Folium Diversion Planner (OSM, Alt Routes)          Γòæ
+Γòæ  Phase 11 Γöé Digital Twin Simulator                              Γòæ
+Γòæ  Phase 12 Γöé Post-Event Learning (SQLite stor
+

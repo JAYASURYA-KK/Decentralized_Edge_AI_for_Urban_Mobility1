@@ -1,0 +1,164 @@
+﻿=== CELL 15 OUTPUT ===
+[2K   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m97.1/97.1 MB[0m [31m8.4 MB/s[0m eta [36m0:00:00[0m
+[?25h[REG] RandomForest              R┬▓=0.7153  RMSE=6.4335
+[REG] XGBoost                   R┬▓=0.7259  RMSE=6.3127
+[LightGBM] [Warning] Found whitespace in feature_names, replace with underlines
+[REG] LightGBM                  R┬▓=0.7437  RMSE=6.1043
+[REG] CatBoost                  R┬▓=0.7406  RMSE=6.1409
+[REG] ExtraTrees                R┬▓=0.7295  RMSE=6.2712
+[REG] HistGradientBoosting      R┬▓=0.7460  RMSE=6.0765
+
+[CLS] RandomForest              Acc=0.9363  F1=0.9295
+[CLS] XGBoost                   Acc=0.9363  F1=0.9327
+[LightGBM] [Warning] Found whitespace in feature_names, replace with underlines
+[CLS] LightGBM                  Acc=0.9357  F1=0.9321
+[CLS] CatBoost                  Acc=0.9363  F1=0.9307
+[CLS] ExtraTrees                Acc=0.9383  F1=0.9320
+[CLS] HistGradientBoosting      Acc=0.9357  F1=0.9327
+
+
+=== CELL 17 OUTPUT ===
+[?25l   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m0.0/425.6 kB[0m [31m?[0m eta [36m-:--:--[0m
+[2K   [91mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m[91mΓò╕[0m[90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m286.7/425.6 kB[0m [31m8.5 MB/s[0m eta [36m0:00:01[0m
+[2K   [90mΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü[0m [32m425.6/425.6 kB[0m [31m8.3 MB/s[0m eta [36m0:00:00[0m
+[?25hXGB RandomizedCV best params: {'subsample': 0.6, 'reg_lambda': 1.5, 'reg_alpha': 0, 'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.05, 'colsample_bytree': 1.0}
+XGB CV R┬▓: 0.7606
+
+RF GridSearchCV best params: {'max_depth': 10, 'min_samples_split': 5, 'n_estimators': 100}
+RF CV F1: 0.9424
+
+Optuna best params: {'iterations': 203, 'depth': 7, 'learning_rate': 0.18138822546975292, 'l2_leaf_reg': 2.1232378784654475}
+Optuna best F1: 0.9385
+CatBoostClassifier(depth=7, iterations=203, l2_leaf_reg=2.1232378784654475, learning_rate=0.18138822546975292, random_state=42, verbose=0)
+
+=== CELL 19 OUTPUT ===
+=== Regression Metrics ===
+                         MAE    RMSE      R2  MAPE
+RandomForest          3.1683  6.4335  0.7153  9.07
+XGBoost               3.3021  6.3127  0.7259  9.28
+LightGBM              3.0092  6.1043  0.7437  8.57
+CatBoost              3.1142  6.1409  0.7406  8.84
+ExtraTrees            3.1674  6.2712  0.7295  8.76
+HistGradientBoosting  2.9966  6.0765  0.7460  8.47
+<Figure size 1800x500 with 3 Axes>
+=== Classification Metrics ===
+                      Accuracy      F1  Precision  Recall
+RandomForest            0.9363  0.9295     0.9336  0.9363
+XGBoost                 0.9363  0.9327     0.9338  0.9363
+LightGBM                0.9357  0.9321     0.9334  0.9357
+CatBoost                0.9363  0.9307     0.9335  0.9363
+ExtraTrees              0.9383  0.9320     0.9361  0.9383
+HistGradientBoosting    0.9357  0.9327     0.9331  0.9357
+<Figure size 1400x500 with 2 Axes>
+
+=== CELL 20 OUTPUT ===
+<Figure size 700x500 with 2 Axes>              precision    recall  f1-score   support
+
+        High       0.72      0.32      0.44        41
+         Low       0.89      0.94      0.91       359
+      Medium       0.96      0.96      0.96      1108
+
+    accuracy                           0.94      1508
+   macro avg       0.86      0.74      0.77      1508
+weighted avg       0.93      0.94      0.93      1508
+
+
+
+=== CELL 22 OUTPUT ===
+[CLS CV] RandomForest              F1=0.9385 ┬▒0.0038
+[CLS CV] XGBoost                   F1=0.9385 ┬▒0.0034
+[CLS CV] LightGBM                  F1=0.9386 ┬▒0.0060
+[CLS CV] CatBoost                  F1=0.9409 ┬▒0.0053
+[CLS CV] ExtraTrees                F1=0.9379 ┬▒0.0044
+[CLS CV] HistGradientBoosting      F1=0.9383 ┬▒0.0042
+
+[REG CV] RandomForest              R┬▓=0.7347 ┬▒0.0190
+[REG CV] XGBoost                   R┬▓=0.7235 ┬▒0.0219
+[REG CV] LightGBM                  R┬▓=0.7514 ┬▒0.0205
+[REG CV] CatBoost                  R┬▓=0.7505 ┬▒0.0156
+[REG CV] ExtraTrees                R┬▓=0.7318 ┬▒0.0151
+[REG CV] HistGradientBoosting      R┬▓=0.7525 ┬▒0.0202
+<Figure size 1000x500 with 1 Axes>
+
+=== CELL 36 OUTPUT ===
+=======================================================
+     MODEL SELECTION RESULTS
+=======================================================
+
+≡ƒôè Regression Model Comparison:
+                          R2    RMSE     MAE  MAPE
+RandomForest          0.7153  6.4335  3.1683  9.07
+XGBoost               0.7259  6.3127  3.3021  9.28
+LightGBM              0.7437  6.1043  3.0092  8.57
+CatBoost              0.7406  6.1409  3.1142  8.84
+ExtraTrees            0.7295  6.2712  3.1674  8.76
+HistGradientBoosting  0.7460  6.0765  2.9966  8.47
+
+≡ƒÅå Best Regression Model: HistGradientBoosting  (R┬▓=0.7460)
+
+≡ƒôè Classification Model Comparison:
+                      Accuracy      F1  Precision  Recall
+RandomForest            0.9363  0.9295     0.9336  0.9363
+XGBoost                 0.9363  0.9327     0.9338  0.9363
+LightGBM                0.9357  0.9321     0.9334  0.9357
+CatBoost                0.9363  0.9307     0.9335  0.9363
+ExtraTrees              0.9383  0.9320     0.9361  0.9383
+HistGradientBoosting    0.9357  0.9327     0.9331  0.9357
+
+≡ƒÅå Best Classification Model: XGBoost  (F1=0.9327)
+<Figure size 1400x500 with 2 Axes>
+
+=== CELL 43 OUTPUT ===
+
+ΓòöΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòù
+Γòæ         GRIDLOCK HACKATHON 2.0 ΓÇö COMPLETE PIPELINE SUMMARY      Γòæ
+ΓòáΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòú
+Γòæ  Phase 1  Γöé Data Analysis (Missing, Outliers, EDA, Geo)         Γòæ
+Γòæ  Phase 2  Γöé Feature Engineering (15+ features, OHE, Scale)      Γòæ
+Γòæ  Phase 3  Γöé 6 Regression + 6 Classification Models Trained      Γòæ
+Γòæ  Phase 4  Γöé RandomizedSearchCV + GridSearchCV + Optuna Tuning   Γòæ
+Γòæ  Phase 5  Γöé Full Metrics: MAE, RMSE, R┬▓, MAPE, F1, ROC-AUC     Γòæ
+Γòæ  Phase 6  Γöé 5-Fold StratifiedKFold + KFold Cross Validation     Γòæ
+Γòæ  Phase 7  Γöé SHAP + Permutation Importance (Top 20 features)     Γòæ
+Γòæ  Phase 8  Γöé Resource Optimization Engine (Police/Barricades)    Γòæ
+Γòæ  Phase 9  Γöé Multi-Factor Risk Score (0-100)                     Γòæ
+Γòæ  Phase 10 Γöé Folium Diversion Planner (OSM, Alt Routes)          Γòæ
+Γòæ  Phase 11 Γöé Digital Twin Simulator                              Γòæ
+Γòæ  Phase 12 Γöé Post-Event Learning (SQLite store + error analysis) Γòæ
+Γòæ  Phase 13 Γöé Model Selection Leaderboard                         Γòæ
+Γòæ  Phase 14 Γöé joblib .pkl save (model + scaler + encoder)         Γòæ
+Γòæ  Phase 15 Γöé ONNX Conversion + Runtime Verification              Γòæ
+ΓòÜΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓò¥
+
+Best Regression Model:      HistGradientBoosting  | R┬▓=0.7460
+Best Classification Model:  XGBoost | F1=0.9327
+Dataset size (clean):       7,537 rows
+
+Output files:
+  outputs/label_encoder.pkl  (0.5 KB)
+  outputs/shap_summary.png  (163.5 KB)
+  outputs/reg_comparison.png  (90.8 KB)
+  outputs/incident_heatmap.html  (193.5 KB)
+  outputs/traffic_reg_model.pkl  (366.8 KB)
+  outputs/event_congestion.png  (84.3 KB)
+  outputs/confusion_matrix.png  (42.8 KB)
+  outputs/permutation_importance.png  (98.0 KB)
+  outputs/weekend_weekday.png  (51.5 KB)
+  outputs/cv_results.png  (66.1 KB)
+  outputs/outliers.png  (52.7 KB)
+  outputs/post_event_learning.db  (60.0 KB)
+  outputs/scaler.pkl  (1.2 KB)
+  outputs/cls_comparison.png  (64.9 KB)
+  outputs/traffic_cls_model.pkl  (678.0 KB)
+  outputs/ohe.pkl  (2.1 KB)
+  outputs/post_event_learning.png  (95.4 KB)
+  outputs/diversion_map.html  (30.3 KB)
+  outputs/hourly_pattern.png  (107.7 KB)
+  outputs/risk_scores.png  (121.0 KB)
+  outputs/missing_values.png  (207.1 KB)
+  outputs/model_leaderboard.png  (60.9 KB)
+  outputs/correlation_heatmap.png  (203.8 KB)
+  outputs/feature_cols.json  (0.4 KB)
+  outputs/delay_distribution.png  (74.8 KB)
+
+
