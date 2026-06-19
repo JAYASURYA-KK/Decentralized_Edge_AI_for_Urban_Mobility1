@@ -20,15 +20,17 @@
 
 ---
 
-### 🎬 Demo Video
+## 🎬 Demo Video
 
-[![Watch Demo Video](https://img.youtube.com/vi/JJYBAMStn7Y/maxresdefault.jpg)](https://www.youtube.com/watch?v=JJYBAMStn7Y&autoplay=1)
-
-> ▶️ **Click the thumbnail above to watch the demo video**
-
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=1wP5fvj2DKM" target="_blank">
+    <img src="https://img.youtube.com/vi/1wP5fvj2DKM/maxresdefault.jpg" 
+         alt="DRACO 2.0 Demo Video" 
+         width="700" />
+  </a>
+  
+  > ▶️ **Click the thumbnail above to watch the demo video on YouTube**
 </div>
-
----
 
 ## 📋 Table of Contents
 
