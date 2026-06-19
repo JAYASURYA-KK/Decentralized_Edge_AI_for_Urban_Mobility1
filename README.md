@@ -24,7 +24,7 @@
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=1wP5fvj2DKM" target="_blank">
-    <img src="https://img.youtube.com/vi/1wP5fvj2DKM/maxresdefault.jpg" 
+    <img src="https://raw.githubusercontent.com/JAYASURYA-KK/Decentralized_Edge_AI_for_Urban_Mobility1/main/thumbnail.jpeg" 
          alt="DRACO 2.0 Demo Video" 
          width="700" />
   </a>
