@@ -1,13 +1,11 @@
-# 🚦 DRACO 2.0 — Decentralized Edge AI for Urban Mobility
-
 <div align="center">
 
-## 🌐 [▶ VIEW LIVE DEMO](https://decentralized-edge-ai-for-urban-mob.vercel.app/)
-### `https://decentralized-edge-ai-for-urban-mob.vercel.app/`
+# 🚦 DRACO 2.0 — Decentralized Edge AI for Urban Mobility
+
+### 🌐 [▶ VIEW LIVE DEMO](https://decentralized-edge-ai-for-urban-mob.vercel.app/)
+#### `https://decentralized-edge-ai-for-urban-mob.vercel.app/`
 
 ---
-
-![DRACO 2.0 Banner](https://img.shields.io/badge/DRACO-2.0-blue?style=for-the-badge&logo=data:image/svg+xml;base64,)
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://decentralized-edge-ai-for-urban-mob.vercel.app/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/JAYASURYA-KK/Decentralized_Edge_AI_for_Urban_Mobility1)
@@ -18,19 +16,25 @@
 
 > **A next-generation, end-to-end AI pipeline and real-time command center for predicting, managing, and optimizing urban traffic congestion — entirely in the browser.**
 
+</div>
+
 ---
 
 ## 🎬 Demo Video
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=1wP5fvj2DKM" target="_blank">
-    <img src="https://raw.githubusercontent.com/JAYASURYA-KK/Decentralized_Edge_AI_for_Urban_Mobility1/main/thumbnail.jpeg" 
-         alt="DRACO 2.0 Demo Video" 
-         width="700" />
-  </a>
-  
-  > ▶️ **Click the thumbnail above to watch the demo video on YouTube**
+
+<a href="https://www.youtube.com/watch?v=1wP5fvj2DKM" target="_blank">
+  <img src="https://raw.githubusercontent.com/JAYASURYA-KK/Decentralized_Edge_AI_for_Urban_Mobility1/main/thumbnail.jpeg"
+       alt="DRACO 2.0 Demo Video"
+       width="700" />
+</a>
+
+▶️ **Click the thumbnail above to watch the demo video on YouTube**
+
 </div>
+
+---
 
 ## 📋 Table of Contents
 
@@ -261,9 +265,8 @@ Side-by-side comparison of the Random Forest and XGBoost model predictions for t
 ```
 Step 1: TRAIN
 ──────────────
-Open traffic2.ipynb in Jupyter.
-Run all cells to perform EDA, feature engineering,
-model training, and pickle serialization.
+Open traffic2.ipynb in Jupyter. Run all cells to perform EDA,
+feature engineering, model training, and pickle serialization.
 
 Step 2: EXPORT
 ──────────────
@@ -439,7 +442,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <div align="center">
 
-**⭐ If DRACO 2.0 is useful to you, please consider giving the repository a star!**
+⭐ **If DRACO 2.0 is useful to you, please consider giving the repository a star!**
 
 *Built with ❤️ for smarter, safer, and more efficient cities.*
 
