@@ -18,6 +18,14 @@
 
 > **A next-generation, end-to-end AI pipeline and real-time command center for predicting, managing, and optimizing urban traffic congestion — entirely in the browser.**
 
+---
+
+### 🎬 Demo Video
+
+[![Watch Demo Video](https://img.youtube.com/vi/JJYBAMStn7Y/maxresdefault.jpg)](https://www.youtube.com/watch?v=JJYBAMStn7Y&autoplay=1)
+
+> ▶️ **Click the thumbnail above to watch the demo video**
+
 </div>
 
 ---
